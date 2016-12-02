@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Casaroyal - Participa por un hoverboard</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container gradiente">
+      <div class="logo__container">
+        <img class="img-resp logo" src="images/logotipo.png" alt="">
+      </div>
+
+      <p class="txt">PARTICIPA Y PODRÁS GANAR ESTE INCREÍBLE <span>Hoverboard</span>Sólo danos tu nombre y tu correo, así de fácil!</p>
+
+      <form class="formRoyal" action="javascript:;" method="POST">
+        <input class="form__input form__input-name" type="text" placeholder="Tu nombre y apellido">
+        <input class="form__input form__input-email" type="email" placeholder="Tu email">
+        <a href="javascript:;" class="form__btn" type="submit">Enviar mis datos y participar</a>
+      </form>
+      
+      <img class="img-resp" src="images/hoverboard.png" alt="">
+
+
+
+      <footer class="row footer">
+        <p class="hashtag">#ConcursoCasaRoyal</p>
+        <div class="col-md-12">
+          <img class="img-resp logo" src="images/logotipo.png" alt="">
+          <div class="footer__enlaces-container">
+            <a class="footer__enlace" href="http://www.casaroyal.cl" target="_royal">www.casaroyal.cl</a>
+            <a class="footer__enlace" href="javascript:;">Facebook</a>
+            <a class="footer__enlace" href="javascript:;">Bases Legales</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed 
+    <script src="js/bootstrap.min.js"></script>-->
+
+    <script>
+      $(function(){
+
+        function valida(callback){
+           
+            if($(".form__input-email").val().indexOf('@', 0) == -1 || $(".form__input-email").val().indexOf('.', 0) == -1 || $(".form__input-email").val() == "") {
+              $(".form__input-email")
+                .addClass("error")
+                .removeClass("ok");
+            }else{
+              $(".form__input-email")
+                .removeClass("error")
+                .addClass("ok");
+            } 
+ 
+            if($(".form__input-name").val() == "" || $(".form__input-name").val().length < 5) {  
+              $(".form__input-name")
+                .addClass("error")
+                .removeClass("ok");
+
+            }else{
+              $(".form__input-name")
+                .removeClass("error")
+                .addClass("ok");
+            }
+
+            if ($(".form__input-name").hasClass("ok") && $(".form__input-email").hasClass("ok")) {
+              callback();
+            }
+          };
+
+
+        function go(){
+          $(".form__input").hide();
+          $(".form__btn").html("ir a casaroyal.cl");
+          $(".txt").html("<span>¡felicitaciones</span>Ya estás participando!")
+
+          setTimeout(function(){
+            $(".form__btn").attr("href", "http://www.casaroyal.cl");
+          }, 1000);
+    
+        }
+
+
+        $(".form__input").focusout(function(){
+         valida();
+        });
+
+        $(".form__btn").click(function(){
+          valida(go);
+        });
+
+
+
+
+
+      });
+    </script>
+
+  </body>
+</html>
